@@ -1,6 +1,8 @@
 
 Système de Réservations - Symfony 6
 
+"le projet ne fonctionne pas mais voici les étapes nécessaires si il était fini"
+
 Ce projet permet de gérer les réservations d'une salle d'événements en ligne, avec des fonctionnalités pour les administrateurs et les utilisateurs. Il comprend la gestion des utilisateurs, la création et la consultation des réservations, ainsi que la mise en œuvre de règles métier et de sécurité.
 
 Prérequis
@@ -16,11 +18,13 @@ Clonez ce projet sur votre machine locale :
 
 bash
 Copier le code
-git clone https://votre-url-du-repository.git
+git clone https://github.com/R3ALMyRe/TpSymfony.git
 cd reservation-system
 
 Étape 2 : Installer les dépendances
 Installez les dépendances du projet via Composer :
+bash
+composer install
 
 bash
 Copier le code
