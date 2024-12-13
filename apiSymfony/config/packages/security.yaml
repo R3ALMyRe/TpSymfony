@@ -1,0 +1,41 @@
+security:
+    # Utilisation de password_hashers au lieu de encoders
+    password_hashers:
+        App\Entity\User:
+            algorithm: auto
+
+    # L'authentification se fait via le formulaire de login
+    firewalls:
+        # Firewall public (pages non sécurisées comme la page de login)
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        # Firewall pour la gestion des utilisateurs et réservations
+        main:
+            # Permet l'authentification par formulaire
+            form_login:
+                login_path: login
+                check_path: login
+                default_target_path: /dashboard  # Redirection après une connexion réussie
+            # Définir un provider pour l'utilisateur
+            provider: app_user_provider  # Ceci est la clé pour définir le provider utilisateur
+            # Logout configuré
+            logout:
+                path: logout
+
+            # Sécurisation des pages
+            security: true
+
+    # Définir les rôles accessibles pour chaque type d'utilisateur
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/user, roles: ROLE_USER }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+# Définir le user provider pour charger l'utilisateur par email
+providers:
+    app_user_provider:
+        entity:
+            class: App\Entity\User
+            property: email
